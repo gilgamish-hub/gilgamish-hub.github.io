@@ -2,45 +2,37 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Jatin Pal · AI/ML Engineer</title>
-<meta name="description" content="Jatin Pal: final-year B.Tech CSE (AI) student building machine learning and LLM applications in Python. Projects, results and resume.">
+<meta name="description" content="Jatin Pal: final-year B.Tech CSE (AI) student building machine learning and LLM applications in Python. Live demos, measured results and resume.">
 <meta property="og:title" content="Jatin Pal · AI/ML Engineer">
-<meta property="og:description" content="Machine learning and LLM projects with measured results: LegalBERT contract clause classification, internship recommender, IT support agent.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f766e'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EJP%3C/text%3E%3C/svg%3E">
+<meta property="og:description" content="LegalBERT contract clause classifier (88.4% on held-out contracts), internship recommender and more, with live demos.">
+<meta name="theme-color" content="#07090d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232dd4bf'/%3E%3Cstop offset='1' stop-color='%23a78bfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%2307090d'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='url(%23g)' text-anchor='middle'%3EJP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");</script>
 <style>
   :root {
-    --bg: #fafaf7;
-    --surface: #ffffff;
-    --ink: #1c1c1a;
-    --muted: #5d5d57;
-    --line: #e4e3dc;
-    --accent: #0f766e;
-    --accent-soft: #e6f3f1;
-    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+    --bg: #07090d;
+    --panel: rgba(255, 255, 255, 0.035);
+    --panel-strong: rgba(255, 255, 255, 0.06);
+    --line: rgba(255, 255, 255, 0.09);
+    --ink: #e8edf4;
+    --muted: #97a3b6;
+    --teal: #2dd4bf;
+    --violet: #a78bfa;
+    --sky: #38bdf8;
+    --grad: linear-gradient(120deg, var(--teal), var(--sky) 45%, var(--violet));
     --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --display: "Space Grotesk", "Inter", system-ui, sans-serif;
     --mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #111312;
-      --surface: #181b1a;
-      --ink: #e9e9e4;
-      --muted: #a3a39c;
-      --line: #2a2e2c;
-      --accent: #5ccfc0;
-      --accent-soft: #16312d;
-      --shadow: none;
-      color-scheme: dark;
-    }
+    color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
   body {
     margin: 0;
     background: var(--bg);
@@ -48,115 +40,202 @@
     font: 16px/1.65 var(--sans);
     -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--accent); text-underline-offset: 3px; }
-  img { max-width: 100%; display: block; }
+  html, body { overflow-x: hidden; overflow-x: clip; }
+  a { color: var(--teal); text-underline-offset: 3px; }
+  img { max-width: 100%; height: auto; display: block; }
   [hidden] { display: none !important; }
-  .wrap { max-width: 920px; margin: 0 auto; padding-inline: 20px; }
+  code { font-family: var(--mono); font-size: .88em; color: var(--sky); overflow-wrap: anywhere; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: 22px; }
+
+  /* Soft colour glows behind the page */
+  .bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+  .glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .35; }
+  .glow.a { width: 520px; height: 520px; background: #134e4a; top: -160px; right: -120px; }
+  .glow.b { width: 480px; height: 480px; background: #2e1065; bottom: -180px; left: -160px; }
 
   /* Nav */
   header.nav {
-    position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(8px);
+    position: fixed; inset: 0 0 auto 0; z-index: 20;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: rgba(7, 9, 13, 0.62);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
     border-bottom: 1px solid var(--line);
   }
-  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
-  .brand { font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
-  .nav nav { display: flex; gap: 20px; align-items: center; font-size: 15px; }
-  .nav nav a { color: var(--muted); text-decoration: none; }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+  .brand { font-family: var(--display); font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
+  .brand span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .nav nav { display: flex; gap: 22px; align-items: center; font-size: 15px; }
+  .nav nav a { color: var(--muted); text-decoration: none; transition: color .2s; }
   .nav nav a:hover { color: var(--ink); }
-  @media (max-width: 640px) { .nav nav a:not(.btn) { display: none; } }
+  @media (max-width: 680px) { .nav nav a:not(.btn) { display: none; } }
 
   /* Buttons */
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 9px 16px; border-radius: 8px;
-    font-weight: 600; font-size: 15px; text-decoration: none;
-    border: 1px solid var(--line); color: var(--ink); background: var(--surface);
+    padding: 11px 18px; border-radius: 10px;
+    font-weight: 600; font-size: 15px; text-decoration: none; color: var(--ink);
+    background: var(--panel-strong); border: 1px solid var(--line);
+    transition: transform .2s, border-color .2s, box-shadow .2s;
   }
-  .btn:hover { border-color: var(--muted); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-  @media (prefers-color-scheme: dark) { .btn.primary { color: #0b1f1c; } }
-  .btn.small { padding: 6px 12px; font-size: 14px; }
+  .btn:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.22); }
+  .btn.primary {
+    color: #041014; border: 0;
+    background: var(--grad);
+    box-shadow: 0 8px 30px -8px rgba(45, 212, 191, .55);
+  }
+  .btn.primary:hover { box-shadow: 0 12px 38px -8px rgba(56, 189, 248, .65); }
+  .btn.small { padding: 8px 14px; font-size: 14px; }
+  .btn svg { width: 16px; height: 16px; }
 
   /* Hero */
-  .hero { padding-block: 88px 56px; }
-  .eyebrow { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: .02em; margin: 0 0 14px; }
-  h1 { font-size: clamp(38px, 6vw, 56px); line-height: 1.08; letter-spacing: -.03em; margin: 0 0 18px; }
-  .lead { font-size: 19px; color: var(--muted); max-width: 640px; margin: 0 0 28px; }
-  .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; overflow: hidden; padding-block: 0; }
+  #net { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-fade { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, rgba(7, 9, 13, .94) 0%, rgba(7, 9, 13, .7) 36%, rgba(7, 9, 13, 0) 60%); }
+  .hero .wrap { position: relative; width: 100%; padding-block: 120px 80px; pointer-events: none; }
+  .hero .wrap > * { pointer-events: auto; }
+  .hero-text { max-width: 620px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 13px; color: var(--teal); letter-spacing: .03em;
+    padding: 6px 12px; border: 1px solid rgba(45, 212, 191, .3); border-radius: 999px;
+    background: rgba(45, 212, 191, .06); margin: 0 0 22px;
+  }
+  .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 12px var(--teal); animation: pulse 2s infinite; }
+  @keyframes pulse { 50% { opacity: .35; } }
+  h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(42px, 7.2vw, 78px); line-height: 1.02; letter-spacing: -.035em;
+    margin: 0 0 22px;
+  }
+  h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { font-size: clamp(17px, 2vw, 20px); color: var(--muted); margin: 0 0 32px; max-width: 560px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-stats { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 44px; }
+  .hero-stats div { font-size: 13.5px; color: var(--muted); }
+  .hero-stats b { display: block; font-family: var(--display); font-size: 26px; color: var(--ink); font-weight: 600; letter-spacing: -.02em; }
+  @media (max-width: 760px) {
+    .hero { min-height: auto; }
+    #net { opacity: .5; }
+    .hero-fade { background: linear-gradient(180deg, rgba(7, 9, 13, .35), rgba(7, 9, 13, .75) 55%, rgba(7, 9, 13, .5)); }
+    .hero .wrap { padding-block: 104px 56px; }
+  }
 
   /* Sections */
-  section { padding: 56px 0; border-top: 1px solid var(--line); }
-  h2 { font-size: 26px; letter-spacing: -.02em; margin: 0 0 8px; }
-  .section-intro { color: var(--muted); margin: 0 0 28px; }
-  h3 { font-size: 20px; letter-spacing: -.01em; margin: 0 0 6px; }
+  section { position: relative; padding-block: 96px; }
+  .kicker { font-family: var(--mono); font-size: 13px; color: var(--teal); letter-spacing: .06em; margin: 0 0 10px; }
+  h2 { font-family: var(--display); font-size: clamp(30px, 4vw, 42px); letter-spacing: -.03em; line-height: 1.1; margin: 0 0 14px; }
+  .section-intro { color: var(--muted); margin: 0 0 44px; max-width: 620px; }
+  h3 { font-family: var(--display); font-size: 22px; letter-spacing: -.015em; margin: 0 0 8px; }
+
+  /* Glass panels with a moving highlight */
+  .panel {
+    position: relative; border-radius: 18px;
+    background: var(--panel); border: 1px solid var(--line);
+    backdrop-filter: blur(6px);
+  }
+  .tilt { transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .18s ease-out, border-color .3s; will-change: transform; }
+  .tilt::before {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(56, 189, 248, .10), transparent 60%);
+  }
+  .tilt:hover::before { opacity: 1; }
+  .tilt:hover { border-color: rgba(255, 255, 255, .16); }
 
   /* Featured project */
-  .featured {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
-    padding: 28px; box-shadow: var(--shadow);
-  }
-  .featured .tagline { color: var(--muted); margin: 0 0 22px; }
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
-  .stat { background: var(--accent-soft); border-radius: 10px; padding: 14px 16px; }
-  .stat .value { font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--accent); line-height: 1.2; }
-  .stat .label { font-size: 13.5px; color: var(--muted); }
-  @media (max-width: 560px) { .stats { grid-template-columns: 1fr; } }
-  .split { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: start; }
-  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
-  .featured ul { margin: 0 0 20px; padding-left: 20px; }
-  .featured li { margin-bottom: 8px; }
-  code { overflow-wrap: anywhere; }
-  figure { margin: 0; }
-  figure img { border: 1px solid var(--line); border-radius: 10px; background: #fff; }
-  figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .featured { padding: clamp(22px, 4vw, 40px); }
+  .featured-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .badge { font-family: var(--mono); font-size: 12px; color: var(--violet); border: 1px solid rgba(167, 139, 250, .35); border-radius: 999px; padding: 3px 10px; }
+  .featured .tagline { color: var(--muted); margin: 0 0 28px; max-width: 760px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 34px; }
+  .stat { border-radius: 14px; padding: 18px 20px; background: linear-gradient(160deg, rgba(45, 212, 191, .10), rgba(167, 139, 250, .05)); border: 1px solid rgba(45, 212, 191, .18); }
+  .stat .value { font-family: var(--display); font-size: clamp(30px, 4vw, 40px); font-weight: 700; line-height: 1.1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat .label { font-size: 14px; color: var(--muted); }
+  @media (max-width: 620px) { .stats { grid-template-columns: 1fr; } }
+
+  .split { display: grid; grid-template-columns: 1fr 1.05fr; gap: 40px; align-items: start; }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+  .points { margin: 0 0 26px; padding: 0; list-style: none; }
+  .points li { position: relative; padding-left: 22px; margin-bottom: 12px; color: #cfd6e2; }
+  .points li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 2px; background: var(--grad); transform: rotate(45deg); }
+
+  /* Browser-style frame for screenshots */
+  .frame { border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: #0d1117; box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .8), 0 0 0 1px rgba(255, 255, 255, .02); }
+  .frame-bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; background: #11161d; border-bottom: 1px solid var(--line); }
+  .frame-bar i { width: 10px; height: 10px; border-radius: 50%; background: #2a313c; }
+  .frame-bar span { margin-left: 10px; font-family: var(--mono); font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .figure-stack { display: grid; gap: 18px; }
+  figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; }
+  .matrix { display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: center; padding: 14px; }
+  .matrix img { border-radius: 8px; background: #fff; }
+  .matrix p { margin: 0; font-size: 14px; color: var(--muted); }
+  @media (max-width: 480px) { .matrix { grid-template-columns: 1fr; } .matrix img { max-width: 220px; } }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; padding: 0; list-style: none; }
+  .tags li { font-family: var(--mono); font-size: 12.5px; padding: 4px 10px; border-radius: 7px; background: rgba(56, 189, 248, .08); border: 1px solid rgba(56, 189, 248, .18); color: #bfe6fb; }
 
   /* Project cards */
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }
-  .card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
-    padding: 22px; display: flex; flex-direction: column; box-shadow: var(--shadow);
-  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px; margin-top: 22px; }
+  .card { padding: 22px; display: flex; flex-direction: column; }
+  .card .shot { margin: -4px -4px 20px; }
   .card p { color: var(--muted); margin: 0 0 14px; font-size: 15px; }
-  .card ul { margin: 0 0 16px; padding-left: 18px; font-size: 15px; }
-  .card li { margin-bottom: 6px; }
-  .card .links { margin-top: auto; display: flex; gap: 8px; flex-wrap: wrap; }
-
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; padding: 0; list-style: none; }
-  .tags li {
-    font-family: var(--mono); font-size: 12.5px; padding: 3px 9px; border-radius: 6px;
-    background: var(--accent-soft); color: var(--ink); margin: 0;
-  }
+  .card .points li { font-size: 15px; margin-bottom: 8px; }
+  .card .links { margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap; }
 
   /* Skills */
-  .skills { display: grid; grid-template-columns: 200px 1fr; gap: 14px 24px; }
-  .skills dt { font-weight: 600; }
-  .skills dd { margin: 0; color: var(--muted); }
-  @media (max-width: 560px) { .skills { grid-template-columns: 1fr; gap: 2px; } .skills dd { margin-bottom: 12px; } }
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+  .skill { padding: 22px; }
+  .skill h3 { font-size: 17px; margin-bottom: 14px; }
+  .skill .tags { margin: 0; }
 
   /* Timeline */
-  .item { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin-bottom: 22px; }
-  .item .when { color: var(--muted); font-size: 14px; font-family: var(--mono); }
-  .item p { grid-column: 1 / -1; margin: 0; color: var(--muted); }
-  @media (max-width: 560px) { .item { grid-template-columns: 1fr; } }
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--teal), var(--violet)); opacity: .6; }
+  .event { position: relative; margin-bottom: 26px; padding: 20px 22px; }
+  .event::after { content: ""; position: absolute; left: -29px; top: 26px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--teal); box-shadow: 0 0 14px rgba(45, 212, 191, .6); }
+  .event .when { font-family: var(--mono); font-size: 13px; color: var(--teal); }
+  .event h3 { font-size: 19px; margin: 4px 0 6px; }
+  .event p { margin: 0; color: var(--muted); }
+  .certs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 8px; padding: 0; list-style: none; }
+  .certs li { padding: 14px 16px; font-size: 14.5px; }
+  .certs li b { display: block; font-weight: 600; color: var(--ink); }
+  .certs li span { color: var(--muted); font-size: 13.5px; }
 
-  .certs { margin: 0; padding-left: 20px; }
-  .certs li { margin-bottom: 6px; }
+  /* Contact */
+  .cta { text-align: center; padding: clamp(32px, 6vw, 64px) 22px; overflow: hidden; }
+  .cta::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: var(--grad); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude; opacity: .55; pointer-events: none; }
+  .cta h2 { margin-bottom: 12px; }
+  .cta p { color: var(--muted); margin: 0 auto 28px; max-width: 520px; }
+  .cta .actions { justify-content: center; }
+  .email { font-family: var(--mono); font-size: 15px; color: var(--ink); }
 
-  .contact { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
-  footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+  footer { padding: 40px 0 calc(48px + env(safe-area-inset-bottom, 0px)); color: var(--muted); font-size: 14px; text-align: center; }
+
+  /* Reveal on scroll (only when JavaScript runs) */
+  /* "translate" is separate from "transform", so revealing never cancels the tilt */
+  .js .reveal { opacity: 0; translate: 0 28px; transition: opacity .8s ease, translate .8s cubic-bezier(.2, .7, .2, 1); }
+  .js .reveal.in { opacity: 1; translate: none; }
+  .js .reveal.tilt { transition: opacity .8s ease, translate .8s cubic-bezier(.2, .7, .2, 1), transform .18s ease-out, border-color .3s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .reveal { opacity: 1; translate: none; transition: none; }
+    .eyebrow .dot { animation: none; }
+    .tilt { transform: none !important; }
+  }
 </style>
 </head>
 <body>
+<div class="bg" aria-hidden="true"><div class="glow a"></div><div class="glow b"></div></div>
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="#top">Jatin Pal</a>
+    <a class="brand" href="#top">Jatin<span>.</span>Pal</a>
     <nav>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
+      <a href="#journey">Journey</a>
       <a href="#contact">Contact</a>
       <a class="btn small primary" href="Jatin_Pal_Resume.pdf">Resume</a>
     </nav>
@@ -164,88 +243,108 @@
 </header>
 
 <main id="top">
-  <div class="wrap hero">
-    <p class="eyebrow">AI/ML ENGINEER · B.TECH CSE (AI) · GRADUATING 2027</p>
-    <h1>I build machine learning and LLM applications, and measure whether they work.</h1>
-    <p class="lead">Final-year Computer Science student at Bennett University, specialising in Artificial Intelligence. I work in Python across transformer fine-tuning, retrieval and recommendation, and LLM integration. I'm looking for AI/ML or Generative AI engineering roles.</p>
-    <div class="actions">
-      <a class="btn primary" href="Jatin_Pal_Resume.pdf">Download resume</a>
-      <a class="btn" href="https://github.com/gilgamish-hub">GitHub</a>
-      <a class="btn" href="https://www.linkedin.com/in/jatin-pal-ba41a828a/">LinkedIn</a>
+  <section class="hero" aria-label="Introduction">
+    <canvas id="net" aria-hidden="true"></canvas>
+    <div class="hero-fade" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hero-text">
+        <p class="eyebrow reveal"><span class="dot"></span>AI/ML ENGINEER · GRADUATING 2027</p>
+        <h1 class="reveal d1">Jatin Pal.<br><span class="grad">I build models that ship, and measure them honestly.</span></h1>
+        <p class="lead reveal d2">Final-year B.Tech CSE (AI) student at Bennett University. I fine-tune transformers, build retrieval and recommendation systems, and wire LLMs into apps people can actually use.</p>
+        <div class="actions reveal d3">
+          <a class="btn primary" href="#projects">See my work</a>
+          <a class="btn" href="Jatin_Pal_Resume.pdf">Resume</a>
+          <a class="btn" href="https://github.com/gilgamish-hub">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/jatin-pal-ba41a828a/">LinkedIn</a>
+        </div>
+        <div class="hero-stats reveal d3">
+          <div><b>88.4%</b>LegalBERT accuracy on unseen contracts</div>
+          <div><b>2</b>live demos you can try</div>
+          <div><b>510</b>lawyer-annotated contracts used</div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
   <section id="projects">
     <div class="wrap">
-      <h2>Projects</h2>
-      <p class="section-intro">Every number here comes from the code in the linked repository.</p>
+      <p class="kicker reveal">01 · PROJECTS</p>
+      <h2 class="reveal">Things I've built</h2>
+      <p class="section-intro reveal">Every number on this page comes from the code in the linked repository. Two of these run live, so you can try them yourself.</p>
 
-      <article class="featured">
-        <h3>Legal Contract Auditor</h3>
-        <p class="tagline">Reads a contract, splits it into clauses and classifies each one into 19 clause types with a fine-tuned LegalBERT model, then flags risky wording.</p>
+      <article class="panel featured tilt reveal" data-tilt="2.5">
+        <div class="featured-head">
+          <h3>Legal Contract Auditor</h3>
+          <span class="badge">FEATURED · LIVE</span>
+        </div>
+        <p class="tagline">Reads a contract, splits it into clauses and classifies each one into 19 clause types with a fine-tuned LegalBERT model, then flags risky wording and shows which words drove each prediction.</p>
 
         <div class="stats">
-          <div class="stat"><div class="value">88.4%</div><div class="label">accuracy on held-out contracts</div></div>
-          <div class="stat"><div class="value">0.864</div><div class="label">macro F1 (baseline 0.811)</div></div>
-          <div class="stat"><div class="value">76</div><div class="label">test contracts never seen in training</div></div>
+          <div class="stat"><div class="value" data-count="88.4" data-decimals="1" data-suffix="%">88.4%</div><div class="label">accuracy on held-out contracts</div></div>
+          <div class="stat"><div class="value" data-count="0.864" data-decimals="3">0.864</div><div class="label">macro F1 (baseline 0.811)</div></div>
+          <div class="stat"><div class="value" data-count="76" data-decimals="0">76</div><div class="label">test contracts never seen in training</div></div>
         </div>
 
         <div class="split">
           <div>
-            <ul>
-              <li>Built a dataset of 9,149 clauses from the lawyer annotations in CUAD (510 commercial contracts), with an "Other" class so the model can be run on whole contracts.</li>
+            <ul class="points">
+              <li>Built a dataset of 9,149 clauses from the lawyer annotations in CUAD (510 commercial contracts), plus an "Other" class so the model can read whole contracts.</li>
               <li>Split the data by contract and removed text duplicated across splits, so the test score reflects contracts the model has never seen.</li>
-              <li>Fine-tuned <code>legal-bert-base-uncased</code> on a Kaggle GPU and compared it with a TF-IDF + logistic regression baseline (81.8% accuracy).</li>
-              <li>My first version reported 96.8%, but its labels came from keyword rules that alone scored 95.8%. I rebuilt the labels from the real annotations; the README explains the change.</li>
-              <li>Streamlit app: sample contract, text or PDF input, per-clause risk level, the words that drove each prediction, and CSV/PDF reports.</li>
+              <li>Fine-tuned <code>legal-bert-base-uncased</code> on a Kaggle GPU; a TF-IDF + logistic regression baseline scores 81.8%.</li>
+              <li>My first version claimed 96.8%, but its labels came from keyword rules that alone scored 95.8%. I rebuilt the labels from the real annotations and documented why.</li>
             </ul>
             <ul class="tags">
-              <li>PyTorch</li><li>Hugging Face Transformers</li><li>LegalBERT</li><li>Scikit-learn</li><li>Streamlit</li><li>Docker</li>
+              <li>PyTorch</li><li>Transformers</li><li>LegalBERT</li><li>Scikit-learn</li><li>Streamlit</li><li>Docker</li>
             </ul>
             <div class="actions">
-              <a class="btn primary" href="https://jatin-legal-auditor.streamlit.app" data-demo>Try the live demo</a>
+              <a class="btn primary" href="https://jatin-legal-auditor.streamlit.app">Try the live demo</a>
               <a class="btn" href="https://github.com/gilgamish-hub/legal-auditor-ai">Code</a>
+              <a class="btn" href="https://huggingface.co/GILGAMISH/legal-auditor-legalbert">Model</a>
             </div>
           </div>
-          <figure>
-            <img src="assets/legal-confusion-matrix.png" alt="Confusion matrix of LegalBERT predictions on the test contracts; most clause types are predicted correctly along the diagonal." loading="lazy">
-            <figcaption>Confusion matrix on the test contracts. The main mix-ups are Anti-Assignment with Change of Control and Exclusivity with Non-Compete.</figcaption>
-          </figure>
+          <div class="figure-stack">
+            <figure>
+              <div class="frame">
+                <div class="frame-bar"><i></i><i></i><i></i><span>jatin-legal-auditor.streamlit.app</span></div>
+                <img src="assets/legal-app.webp" width="1290" height="705" alt="The Legal Auditor app showing two clauses from a sample contract classified as Exclusivity and License Grant, with the most influential words highlighted." loading="lazy">
+              </div>
+              <figcaption>The live app on a contract from the test set, with the words that drove each prediction highlighted.</figcaption>
+            </figure>
+            <div class="panel matrix">
+              <img src="assets/legal-confusion-matrix.webp" width="1650" height="1500" alt="Confusion matrix of the test predictions; most clause types sit on the diagonal." loading="lazy">
+              <p>Confusion matrix on the test contracts. The main mix-ups are Anti-Assignment with Change of Control, and Exclusivity with Non-Compete.</p>
+            </div>
+          </div>
         </div>
       </article>
 
       <div class="grid">
-        <article class="card">
+        <article class="panel card tilt reveal d1">
+          <div class="shot frame">
+            <div class="frame-bar"><i></i><i></i><i></i><span>innovace.streamlit.app</span></div>
+            <img src="assets/internai-app.webp" width="1030" height="840" alt="InternAI showing 10 matching internships, a 52% average match score and the top machine learning internship recommendations." loading="lazy">
+          </div>
           <h3>InternAI</h3>
           <p>Internship recommendation system built for Smart India Hackathon, where I led the team.</p>
-          <ul>
+          <ul class="points">
             <li>Content-based recommender over 6,500+ Internshala listings with TF-IDF and cosine similarity</li>
-            <li>Skill-gap analysis, resume feedback and learning roadmaps with Gemini, falling back to a local Llama 3 model</li>
+            <li>Skill-gap analysis, resume feedback and learning roadmaps with Gemini, each visitor using their own key</li>
           </ul>
           <ul class="tags"><li>Scikit-learn</li><li>Gemini API</li><li>Ollama</li><li>Streamlit</li></ul>
           <div class="links">
-            <a class="btn small primary" href="https://innovace.streamlit.app" data-demo>Live demo</a>
+            <a class="btn small primary" href="https://innovace.streamlit.app">Live demo</a>
             <a class="btn small" href="https://github.com/gilgamish-hub/innovace">Code</a>
           </div>
         </article>
 
-        <article class="card">
-          <h3>IT Support Agent</h3>
-          <p>A rule-based policy engine that resolves internal IT requests without hallucinating.</p>
-          <ul>
-            <li>5-stage pipeline: intent parsing, knowledge-base retrieval, policy decision, tool execution, response</li>
-            <li>10 tool functions and a 17-test Pytest suite covering 15 request scenarios</li>
-          </ul>
-          <ul class="tags"><li>Python</li><li>Pydantic</li><li>Pytest</li><li>Streamlit</li></ul>
-          <div class="links">
-            <a class="btn small" href="https://github.com/gilgamish-hub/Veridian-Corp-">Code</a>
+        <article class="panel card tilt reveal d2">
+          <div class="shot frame">
+            <div class="frame-bar"><i></i><i></i><i></i><span>genetic-feature-selection</span></div>
+            <img src="assets/ga-app.webp" width="1845" height="869" alt="The genetic algorithm feature selection app with a dataset preview and a target column selector." loading="lazy">
           </div>
-        </article>
-
-        <article class="card">
           <h3>Genetic Algorithm Feature Selection</h3>
-          <p>Picks a small, strong feature subset with a mutual-information filter followed by a genetic algorithm.</p>
-          <ul>
+          <p>Finds a small, strong feature subset with a mutual-information filter followed by a genetic algorithm.</p>
+          <ul class="points">
             <li>Breast Cancer Wisconsin: 30 features cut to 5, with 94.7% cross-validated accuracy</li>
             <li>Parallel fitness evaluation with joblib; compares LR, random forest and SVM</li>
           </ul>
@@ -254,71 +353,305 @@
             <a class="btn small" href="https://github.com/gilgamish-hub/genetic-feature-selection">Code</a>
           </div>
         </article>
+
+        <article class="panel card tilt reveal d3">
+          <h3>IT Support Agent</h3>
+          <p>A rule-based policy engine that resolves internal IT requests without hallucinating.</p>
+          <ul class="points">
+            <li>5-stage pipeline: intent parsing, knowledge-base retrieval, policy decision, tool execution, response</li>
+            <li>10 tool functions and a 17-test Pytest suite covering 15 request scenarios</li>
+            <li>State passed between stages as Pydantic models, with JSON/CSV audit logs</li>
+          </ul>
+          <ul class="tags"><li>Python</li><li>Pydantic</li><li>Pytest</li><li>Streamlit</li></ul>
+          <div class="links">
+            <a class="btn small" href="https://github.com/gilgamish-hub/Veridian-Corp-">Code</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
   <section id="skills">
     <div class="wrap">
-      <h2>Skills</h2>
-      <p class="section-intro">What I work with.</p>
-      <dl class="skills">
-        <dt>Languages</dt><dd>Python, C++, Java, SQL</dd>
-        <dt>Machine learning</dt><dd>PyTorch, TensorFlow, Keras, Scikit-learn, CNNs, GANs, VAEs, reinforcement learning (DQN)</dd>
-        <dt>Generative AI &amp; NLP</dt><dd>Hugging Face Transformers, BERT, LegalBERT, DistilBERT, LangChain, LangGraph, RAG, ChromaDB, Gemini API, Ollama</dd>
-        <dt>Computer vision</dt><dd>OpenCV, YOLOv8, U-Net, image segmentation</dd>
-        <dt>Backend &amp; data</dt><dd>FastAPI, REST APIs, MySQL, MongoDB, Pandas, NumPy, Matplotlib, Tableau</dd>
-        <dt>Tools</dt><dd>Git, GitHub, Docker, Streamlit, Pytest, Jupyter, Kaggle, CUDA</dd>
-      </dl>
+      <p class="kicker reveal">02 · SKILLS</p>
+      <h2 class="reveal">What I work with</h2>
+      <p class="section-intro reveal">Python first, with the ML and LLM tooling around it.</p>
+      <div class="skills">
+        <div class="panel skill tilt reveal"><h3>Machine learning</h3><ul class="tags"><li>PyTorch</li><li>TensorFlow</li><li>Keras</li><li>Scikit-learn</li><li>CNNs</li><li>GANs</li><li>VAEs</li><li>RL (DQN)</li></ul></div>
+        <div class="panel skill tilt reveal d1"><h3>Generative AI &amp; NLP</h3><ul class="tags"><li>Transformers</li><li>BERT</li><li>LegalBERT</li><li>DistilBERT</li><li>LangChain</li><li>LangGraph</li><li>RAG</li><li>ChromaDB</li><li>Gemini API</li><li>Ollama</li></ul></div>
+        <div class="panel skill tilt reveal d2"><h3>Computer vision</h3><ul class="tags"><li>OpenCV</li><li>YOLOv8</li><li>U-Net</li><li>Segmentation</li></ul></div>
+        <div class="panel skill tilt reveal"><h3>Languages</h3><ul class="tags"><li>Python</li><li>C++</li><li>Java</li><li>SQL</li></ul></div>
+        <div class="panel skill tilt reveal d1"><h3>Backend &amp; data</h3><ul class="tags"><li>FastAPI</li><li>REST APIs</li><li>MySQL</li><li>MongoDB</li><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Tableau</li></ul></div>
+        <div class="panel skill tilt reveal d2"><h3>Tools</h3><ul class="tags"><li>Git</li><li>Docker</li><li>Streamlit</li><li>Pytest</li><li>Jupyter</li><li>Kaggle</li><li>CUDA</li></ul></div>
+      </div>
     </div>
   </section>
 
-  <section id="experience">
+  <section id="journey">
     <div class="wrap">
-      <h2>Experience &amp; education</h2>
-      <div class="item">
-        <h3>Data Science Intern · Codec Technologies</h3>
-        <span class="when">Aug – Sep 2025</span>
-        <p>Remote. Built and evaluated machine learning models in Python with Scikit-learn and Pandas.</p>
+      <p class="kicker reveal">03 · JOURNEY</p>
+      <h2 class="reveal">Experience &amp; education</h2>
+      <p class="section-intro reveal">Where I've been learning.</p>
+      <div class="timeline">
+        <div class="panel event reveal">
+          <span class="when">AUG – SEP 2025</span>
+          <h3>Data Science Intern · Codec Technologies</h3>
+          <p>Remote. Built and evaluated machine learning models in Python with Scikit-learn and Pandas.</p>
+        </div>
+        <div class="panel event reveal d1">
+          <span class="when">2023 – 2027</span>
+          <h3>B.Tech, Computer Science and Engineering (AI) · Bennett University</h3>
+          <p>Specialisation in Artificial Intelligence. CGPA 7.99 / 10. Coursework: data structures, algorithms, operating systems, DBMS, machine learning, generative AI.</p>
+        </div>
       </div>
-      <div class="item">
-        <h3>B.Tech, Computer Science and Engineering (AI) · Bennett University</h3>
-        <span class="when">2023 – 2027</span>
-        <p>Specialisation in Artificial Intelligence. CGPA 7.99 / 10. Coursework: data structures, algorithms, operating systems, DBMS, machine learning, generative AI.</p>
-      </div>
-
-      <h3 style="margin-top: 32px;">Certifications</h3>
       <ul class="certs">
-        <li>Deep Learning Specialization · DeepLearning.AI</li>
-        <li>Getting Started with Accelerated Computing in CUDA C++ · NVIDIA</li>
-        <li>Algorithmic Toolbox · UC San Diego</li>
-        <li>Object-Oriented Data Structures in C++ · University of Illinois</li>
+        <li class="panel reveal"><b>Deep Learning Specialization</b><span>DeepLearning.AI</span></li>
+        <li class="panel reveal d1"><b>Accelerated Computing in CUDA C++</b><span>NVIDIA</span></li>
+        <li class="panel reveal d2"><b>Algorithmic Toolbox</b><span>UC San Diego</span></li>
+        <li class="panel reveal d3"><b>Object-Oriented Data Structures in C++</b><span>University of Illinois</span></li>
       </ul>
     </div>
   </section>
 
   <section id="contact">
     <div class="wrap">
-      <h2>Contact</h2>
-      <p class="section-intro">The quickest way to reach me is email: <a href="mailto:jatinpal300003@gmail.com">jatinpal300003@gmail.com</a></p>
-      <div class="contact">
-        <a class="btn primary" href="Jatin_Pal_Resume.pdf">Resume (PDF)</a>
-        <a class="btn" href="https://github.com/gilgamish-hub">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/jatin-pal-ba41a828a/">LinkedIn</a>
+      <div class="panel cta reveal">
+        <p class="kicker">04 · CONTACT</p>
+        <h2>Let's build something.</h2>
+        <p>I'm looking for AI/ML and Generative AI engineering roles. Email is the quickest way to reach me.</p>
+        <p class="email"><a href="mailto:jatinpal300003@gmail.com">jatinpal300003@gmail.com</a></p>
+        <div class="actions">
+          <a class="btn primary" href="Jatin_Pal_Resume.pdf">Download resume</a>
+          <a class="btn" href="https://github.com/gilgamish-hub">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/jatin-pal-ba41a828a/">LinkedIn</a>
+        </div>
       </div>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">© 2026 Jatin Pal</div>
-</footer>
+<footer>© 2026 Jatin Pal · Built by hand, no frameworks.</footer>
 
 <script>
-  // Hide demo buttons until the live demos exist
-  document.querySelectorAll("[data-demo]").forEach(function (a) {
-    if (a.getAttribute("href").indexOf("{{") === 0) a.hidden = true;
+(function () {
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- 3D neural network in the hero ---------- */
+  var canvas = document.getElementById("net");
+  var ctx = canvas.getContext("2d");
+  var COLORS = [[45, 212, 191], [56, 189, 248], [167, 139, 250]];
+  var nodes = [], edges = [], neighbours = [], pulses = [];
+  var W = 0, H = 0, cx = 0, cy = 0, R = 0;
+  var angleY = 0, tiltX = -0.25, targetX = -0.25, mouseY = 0;
+  var running = false, lastTime = 0, lastPulse = 0, heroVisible = true;
+
+  function build() {
+    var count = window.innerWidth < 760 ? 70 : 130;
+    nodes = []; edges = []; neighbours = []; pulses = [];
+    // Points spread evenly over a sphere, with some jitter so it looks organic
+    for (var i = 0; i < count; i++) {
+      var k = i + 0.5;
+      var phi = Math.acos(1 - 2 * k / count);
+      var theta = Math.PI * (1 + Math.sqrt(5)) * k;
+      var r = 1 + (Math.random() - 0.5) * 0.4;
+      nodes.push({
+        x: r * Math.cos(theta) * Math.sin(phi),
+        y: r * Math.sin(theta) * Math.sin(phi),
+        z: r * Math.cos(phi),
+        c: COLORS[i % 3]
+      });
+      neighbours.push([]);
+    }
+    // Connect every node to its 3 nearest neighbours
+    var seen = {};
+    for (var a = 0; a < count; a++) {
+      var dists = [];
+      for (var b = 0; b < count; b++) {
+        if (a === b) continue;
+        var dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y, dz = nodes[a].z - nodes[b].z;
+        dists.push([b, dx * dx + dy * dy + dz * dz]);
+      }
+      dists.sort(function (p, q) { return p[1] - q[1]; });
+      for (var m = 0; m < 3; m++) {
+        var j = dists[m][0], key = Math.min(a, j) + "-" + Math.max(a, j);
+        if (seen[key]) continue;
+        seen[key] = true;
+        edges.push([a, j]);
+        neighbours[a].push(j); neighbours[j].push(a);
+      }
+    }
+  }
+
+  function resize() {
+    var rect = canvas.getBoundingClientRect();
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = rect.width; H = rect.height;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var narrow = W < 900;
+    cx = narrow ? W * 0.5 : W * 0.74;
+    cy = narrow ? H * 0.42 : H * 0.52;
+    R = narrow ? W * 0.46 : Math.min(W, H) * 0.31;
+  }
+
+  function project(p) {
+    var cosY = Math.cos(angleY), sinY = Math.sin(angleY), cosX = Math.cos(tiltX), sinX = Math.sin(tiltX);
+    var x = p.x * cosY - p.z * sinY;
+    var z = p.x * sinY + p.z * cosY;
+    var y = p.y * cosX - z * sinX;
+    z = p.y * sinX + z * cosX;
+    var s = 3.2 / (3.2 + z);                 // perspective: closer points are bigger
+    return { x: cx + x * R * s, y: cy + y * R * s, s: s, near: Math.max(0, Math.min(1, (1.4 - z) / 2.8)) };
+  }
+
+  function draw(now) {
+    ctx.clearRect(0, 0, W, H);
+    var pts = nodes.map(project);
+
+    ctx.lineWidth = 1;
+    for (var e = 0; e < edges.length; e++) {
+      var a = pts[edges[e][0]], b = pts[edges[e][1]], c = nodes[edges[e][0]].c;
+      var alpha = 0.04 + 0.26 * ((a.near + b.near) / 2);
+      ctx.strokeStyle = "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + alpha.toFixed(3) + ")";
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i], col = nodes[i].c, size = (0.8 + 2.2 * p.near) * p.s;
+      ctx.fillStyle = "rgba(" + col[0] + "," + col[1] + "," + col[2] + "," + (0.08 + 0.12 * p.near).toFixed(3) + ")";
+      ctx.beginPath(); ctx.arc(p.x, p.y, size * 3.2, 0, 6.2832); ctx.fill();
+      ctx.fillStyle = "rgba(" + col[0] + "," + col[1] + "," + col[2] + "," + (0.35 + 0.65 * p.near).toFixed(3) + ")";
+      ctx.beginPath(); ctx.arc(p.x, p.y, size, 0, 6.2832); ctx.fill();
+    }
+
+    // Signals travelling along the connections
+    for (var q = 0; q < pulses.length; q++) {
+      var pulse = pulses[q], from = pts[pulse.from], to = pts[pulse.to];
+      var px = from.x + (to.x - from.x) * pulse.t, py = from.y + (to.y - from.y) * pulse.t;
+      var glow = ctx.createRadialGradient(px, py, 0, px, py, 9);
+      glow.addColorStop(0, "rgba(255,255,255,0.95)");
+      glow.addColorStop(0.35, "rgba(56,189,248,0.55)");
+      glow.addColorStop(1, "rgba(56,189,248,0)");
+      ctx.fillStyle = glow;
+      ctx.beginPath(); ctx.arc(px, py, 9, 0, 6.2832); ctx.fill();
+    }
+  }
+
+  function step(now) {
+    if (!running) return;
+    var dt = Math.min(50, now - (lastTime || now));
+    lastTime = now;
+
+    angleY += dt * (0.00012 + mouseY * 0.00018);   // slow spin, steered by the mouse
+    tiltX += (targetX - tiltX) * 0.05;               // ease the tilt towards the mouse
+
+    if (now - lastPulse > 140 && pulses.length < 22) {
+      var edge = edges[(Math.random() * edges.length) | 0];
+      pulses.push({ from: edge[0], to: edge[1], t: 0, speed: 0.0009 + Math.random() * 0.0009, hops: 0 });
+      lastPulse = now;
+    }
+    for (var i = pulses.length - 1; i >= 0; i--) {
+      var p = pulses[i];
+      p.t += p.speed * dt;
+      if (p.t >= 1) {
+        var next = neighbours[p.to];
+        if (p.hops < 4 && next.length && Math.random() < 0.7) {
+          var n = next[(Math.random() * next.length) | 0];
+          pulses[i] = { from: p.to, to: n, t: 0, speed: p.speed, hops: p.hops + 1 };
+        } else {
+          pulses.splice(i, 1);
+        }
+      }
+    }
+
+    draw(now);
+    requestAnimationFrame(step);
+  }
+
+  function start() {
+    if (running || reduceMotion || !heroVisible || document.hidden) return;
+    running = true; lastTime = 0;
+    requestAnimationFrame(step);
+  }
+  function stop() { running = false; }
+
+  build(); resize(); draw(0);
+
+  var resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      var wasNarrow = nodes.length < 100, isNarrow = window.innerWidth < 760;
+      if (wasNarrow !== isNarrow) build();
+      resize(); draw(0);
+    }, 120);
   });
+
+  if (!reduceMotion) {
+    window.addEventListener("pointermove", function (e) {
+      targetX = -0.25 + (e.clientY / window.innerHeight - 0.5) * 0.5;
+      mouseY = (e.clientX / window.innerWidth - 0.5);
+    }, { passive: true });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        heroVisible = entries[0].isIntersecting;
+        heroVisible ? start() : stop();
+      }).observe(canvas);
+    }
+    document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
+    start();
+  }
+
+  /* ---------- Reveal sections as they scroll into view ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  function countUp(el) {
+    var target = parseFloat(el.getAttribute("data-count")), decimals = +el.getAttribute("data-decimals") || 0;
+    var suffix = el.getAttribute("data-suffix") || "", t0 = performance.now();
+    function tick(now) {
+      var k = Math.min(1, (now - t0) / 1400), eased = 1 - Math.pow(1 - k, 3);
+      el.textContent = (target * eased).toFixed(decimals) + suffix;
+      if (k < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    revealEls.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var delay = el.classList.contains("d3") ? 240 : el.classList.contains("d2") ? 160 : el.classList.contains("d1") ? 80 : 0;
+        setTimeout(function () {
+          el.classList.add("in");
+          el.querySelectorAll("[data-count]").forEach(countUp);
+        }, delay);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    revealEls.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---------- Tilt cards towards the pointer (mouse only) ---------- */
+  if (!reduceMotion && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    document.querySelectorAll(".tilt").forEach(function (el) {
+      var max = parseFloat(el.getAttribute("data-tilt")) || 6;
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        el.style.setProperty("--rx", ((0.5 - py) * max).toFixed(2) + "deg");
+        el.style.setProperty("--ry", ((px - 0.5) * max).toFixed(2) + "deg");
+        el.style.setProperty("--mx", (px * 100).toFixed(1) + "%");
+        el.style.setProperty("--my", (py * 100).toFixed(1) + "%");
+      });
+      el.addEventListener("pointerleave", function () {
+        el.style.setProperty("--rx", "0deg");
+        el.style.setProperty("--ry", "0deg");
+      });
+    });
+  }
+})();
 </script>
 </body>
 </html>
