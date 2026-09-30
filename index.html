@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jatin Pal · AI/ML Engineer</title>
+<meta name="description" content="Jatin Pal: final-year B.Tech CSE (AI) student building machine learning and LLM applications in Python. Projects, results and resume.">
+<meta property="og:title" content="Jatin Pal · AI/ML Engineer">
+<meta property="og:description" content="Machine learning and LLM projects with measured results: LegalBERT contract clause classification, internship recommender, IT support agent.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f766e'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EJP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf7;
+    --surface: #ffffff;
+    --ink: #1c1c1a;
+    --muted: #5d5d57;
+    --line: #e4e3dc;
+    --accent: #0f766e;
+    --accent-soft: #e6f3f1;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111312;
+      --surface: #181b1a;
+      --ink: #e9e9e4;
+      --muted: #a3a39c;
+      --line: #2a2e2c;
+      --accent: #5ccfc0;
+      --accent-soft: #16312d;
+      --shadow: none;
+      color-scheme: dark;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  img { max-width: 100%; display: block; }
+  [hidden] { display: none !important; }
+  .wrap { max-width: 920px; margin: 0 auto; padding-inline: 20px; }
+
+  /* Nav */
+  header.nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
+  .brand { font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
+  .nav nav { display: flex; gap: 20px; align-items: center; font-size: 15px; }
+  .nav nav a { color: var(--muted); text-decoration: none; }
+  .nav nav a:hover { color: var(--ink); }
+  @media (max-width: 640px) { .nav nav a:not(.btn) { display: none; } }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 16px; border-radius: 8px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    border: 1px solid var(--line); color: var(--ink); background: var(--surface);
+  }
+  .btn:hover { border-color: var(--muted); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  @media (prefers-color-scheme: dark) { .btn.primary { color: #0b1f1c; } }
+  .btn.small { padding: 6px 12px; font-size: 14px; }
+
+  /* Hero */
+  .hero { padding-block: 88px 56px; }
+  .eyebrow { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: .02em; margin: 0 0 14px; }
+  h1 { font-size: clamp(38px, 6vw, 56px); line-height: 1.08; letter-spacing: -.03em; margin: 0 0 18px; }
+  .lead { font-size: 19px; color: var(--muted); max-width: 640px; margin: 0 0 28px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* Sections */
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 26px; letter-spacing: -.02em; margin: 0 0 8px; }
+  .section-intro { color: var(--muted); margin: 0 0 28px; }
+  h3 { font-size: 20px; letter-spacing: -.01em; margin: 0 0 6px; }
+
+  /* Featured project */
+  .featured {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 28px; box-shadow: var(--shadow);
+  }
+  .featured .tagline { color: var(--muted); margin: 0 0 22px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+  .stat { background: var(--accent-soft); border-radius: 10px; padding: 14px 16px; }
+  .stat .value { font-family: var(--mono); font-size: 26px; font-weight: 500; color: var(--accent); line-height: 1.2; }
+  .stat .label { font-size: 13.5px; color: var(--muted); }
+  @media (max-width: 560px) { .stats { grid-template-columns: 1fr; } }
+  .split { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: start; }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+  .featured ul { margin: 0 0 20px; padding-left: 20px; }
+  .featured li { margin-bottom: 8px; }
+  code { overflow-wrap: anywhere; }
+  figure { margin: 0; }
+  figure img { border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+  figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+  /* Project cards */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 22px; display: flex; flex-direction: column; box-shadow: var(--shadow);
+  }
+  .card p { color: var(--muted); margin: 0 0 14px; font-size: 15px; }
+  .card ul { margin: 0 0 16px; padding-left: 18px; font-size: 15px; }
+  .card li { margin-bottom: 6px; }
+  .card .links { margin-top: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; padding: 0; list-style: none; }
+  .tags li {
+    font-family: var(--mono); font-size: 12.5px; padding: 3px 9px; border-radius: 6px;
+    background: var(--accent-soft); color: var(--ink); margin: 0;
+  }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: 200px 1fr; gap: 14px 24px; }
+  .skills dt { font-weight: 600; }
+  .skills dd { margin: 0; color: var(--muted); }
+  @media (max-width: 560px) { .skills { grid-template-columns: 1fr; gap: 2px; } .skills dd { margin-bottom: 12px; } }
+
+  /* Timeline */
+  .item { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; margin-bottom: 22px; }
+  .item .when { color: var(--muted); font-size: 14px; font-family: var(--mono); }
+  .item p { grid-column: 1 / -1; margin: 0; color: var(--muted); }
+  @media (max-width: 560px) { .item { grid-template-columns: 1fr; } }
+
+  .certs { margin: 0; padding-left: 20px; }
+  .certs li { margin-bottom: 6px; }
+
+  .contact { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Jatin Pal</a>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a class="btn small primary" href="Jatin_Pal_Resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <p class="eyebrow">AI/ML ENGINEER · B.TECH CSE (AI) · GRADUATING 2027</p>
+    <h1>I build machine learning and LLM applications, and measure whether they work.</h1>
+    <p class="lead">Final-year Computer Science student at Bennett University, specialising in Artificial Intelligence. I work in Python across transformer fine-tuning, retrieval and recommendation, and LLM integration. I'm looking for AI/ML or Generative AI engineering roles.</p>
+    <div class="actions">
+      <a class="btn primary" href="Jatin_Pal_Resume.pdf">Download resume</a>
+      <a class="btn" href="https://github.com/gilgamish-hub">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/jatin-pal-ba41a828a/">LinkedIn</a>
+    </div>
+  </div>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <p class="section-intro">Every number here comes from the code in the linked repository.</p>
+
+      <article class="featured">
+        <h3>Legal Contract Auditor</h3>
+        <p class="tagline">Reads a contract, splits it into clauses and classifies each one into 19 clause types with a fine-tuned LegalBERT model, then flags risky wording.</p>
+
+        <div class="stats">
+          <div class="stat"><div class="value">88.4%</div><div class="label">accuracy on held-out contracts</div></div>
+          <div class="stat"><div class="value">0.864</div><div class="label">macro F1 (baseline 0.811)</div></div>
+          <div class="stat"><div class="value">76</div><div class="label">test contracts never seen in training</div></div>
+        </div>
+
+        <div class="split">
+          <div>
+            <ul>
+              <li>Built a dataset of 9,149 clauses from the lawyer annotations in CUAD (510 commercial contracts), with an "Other" class so the model can be run on whole contracts.</li>
+              <li>Split the data by contract and removed text duplicated across splits, so the test score reflects contracts the model has never seen.</li>
+              <li>Fine-tuned <code>legal-bert-base-uncased</code> on a Kaggle GPU and compared it with a TF-IDF + logistic regression baseline (81.8% accuracy).</li>
+              <li>My first version reported 96.8%, but its labels came from keyword rules that alone scored 95.8%. I rebuilt the labels from the real annotations; the README explains the change.</li>
+              <li>Streamlit app: sample contract, text or PDF input, per-clause risk level, the words that drove each prediction, and CSV/PDF reports.</li>
+            </ul>
+            <ul class="tags">
+              <li>PyTorch</li><li>Hugging Face Transformers</li><li>LegalBERT</li><li>Scikit-learn</li><li>Streamlit</li><li>Docker</li>
+            </ul>
+            <div class="actions">
+              <a class="btn primary" href="{{LEGAL_DEMO}}" data-demo>Try the live demo</a>
+              <a class="btn" href="https://github.com/gilgamish-hub/legal-auditor-ai">Code</a>
+            </div>
+          </div>
+          <figure>
+            <img src="assets/legal-confusion-matrix.png" alt="Confusion matrix of LegalBERT predictions on the test contracts; most clause types are predicted correctly along the diagonal." loading="lazy">
+            <figcaption>Confusion matrix on the test contracts. The main mix-ups are Anti-Assignment with Change of Control and Exclusivity with Non-Compete.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <div class="grid">
+        <article class="card">
+          <h3>InternAI</h3>
+          <p>Internship recommendation system built for Smart India Hackathon, where I led the team.</p>
+          <ul>
+            <li>Content-based recommender over 6,500+ Internshala listings with TF-IDF and cosine similarity</li>
+            <li>Skill-gap analysis, resume feedback and learning roadmaps with Gemini, falling back to a local Llama 3 model</li>
+          </ul>
+          <ul class="tags"><li>Scikit-learn</li><li>Gemini API</li><li>Ollama</li><li>Streamlit</li></ul>
+          <div class="links">
+            <a class="btn small primary" href="{{INTERNAI_DEMO}}" data-demo>Live demo</a>
+            <a class="btn small" href="https://github.com/gilgamish-hub/innovace">Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>IT Support Agent</h3>
+          <p>A rule-based policy engine that resolves internal IT requests without hallucinating.</p>
+          <ul>
+            <li>5-stage pipeline: intent parsing, knowledge-base retrieval, policy decision, tool execution, response</li>
+            <li>10 tool functions and a 17-test Pytest suite covering 15 request scenarios</li>
+          </ul>
+          <ul class="tags"><li>Python</li><li>Pydantic</li><li>Pytest</li><li>Streamlit</li></ul>
+          <div class="links">
+            <a class="btn small" href="https://github.com/gilgamish-hub/Veridian-Corp-">Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Genetic Algorithm Feature Selection</h3>
+          <p>Picks a small, strong feature subset with a mutual-information filter followed by a genetic algorithm.</p>
+          <ul>
+            <li>Breast Cancer Wisconsin: 30 features cut to 5, with 94.7% cross-validated accuracy</li>
+            <li>Parallel fitness evaluation with joblib; compares LR, random forest and SVM</li>
+          </ul>
+          <ul class="tags"><li>Scikit-learn</li><li>joblib</li><li>Streamlit</li></ul>
+          <div class="links">
+            <a class="btn small" href="https://github.com/gilgamish-hub/genetic-feature-selection">Code</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <p class="section-intro">What I work with.</p>
+      <dl class="skills">
+        <dt>Languages</dt><dd>Python, C++, Java, SQL</dd>
+        <dt>Machine learning</dt><dd>PyTorch, TensorFlow, Keras, Scikit-learn, CNNs, GANs, VAEs, reinforcement learning (DQN)</dd>
+        <dt>Generative AI &amp; NLP</dt><dd>Hugging Face Transformers, BERT, LegalBERT, DistilBERT, LangChain, LangGraph, RAG, ChromaDB, Gemini API, Ollama</dd>
+        <dt>Computer vision</dt><dd>OpenCV, YOLOv8, U-Net, image segmentation</dd>
+        <dt>Backend &amp; data</dt><dd>FastAPI, REST APIs, MySQL, MongoDB, Pandas, NumPy, Matplotlib, Tableau</dd>
+        <dt>Tools</dt><dd>Git, GitHub, Docker, Streamlit, Pytest, Jupyter, Kaggle, CUDA</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2>Experience &amp; education</h2>
+      <div class="item">
+        <h3>Data Science Intern · Codec Technologies</h3>
+        <span class="when">Aug – Sep 2025</span>
+        <p>Remote. Built and evaluated machine learning models in Python with Scikit-learn and Pandas.</p>
+      </div>
+      <div class="item">
+        <h3>B.Tech, Computer Science and Engineering (AI) · Bennett University</h3>
+        <span class="when">2023 – 2027</span>
+        <p>Specialisation in Artificial Intelligence. CGPA 7.99 / 10. Coursework: data structures, algorithms, operating systems, DBMS, machine learning, generative AI.</p>
+      </div>
+
+      <h3 style="margin-top: 32px;">Certifications</h3>
+      <ul class="certs">
+        <li>Deep Learning Specialization · DeepLearning.AI</li>
+        <li>Getting Started with Accelerated Computing in CUDA C++ · NVIDIA</li>
+        <li>Algorithmic Toolbox · UC San Diego</li>
+        <li>Object-Oriented Data Structures in C++ · University of Illinois</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p class="section-intro">The quickest way to reach me is email: <a href="mailto:jatinpal300003@gmail.com">jatinpal300003@gmail.com</a></p>
+      <div class="contact">
+        <a class="btn primary" href="Jatin_Pal_Resume.pdf">Resume (PDF)</a>
+        <a class="btn" href="https://github.com/gilgamish-hub">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/jatin-pal-ba41a828a/">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Jatin Pal</div>
+</footer>
+
+<script>
+  // Hide demo buttons until the live demos exist
+  document.querySelectorAll("[data-demo]").forEach(function (a) {
+    if (a.getAttribute("href").indexOf("{{") === 0) a.hidden = true;
+  });
+</script>
+</body>
+</html>
