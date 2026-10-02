@@ -146,6 +146,7 @@
 
   /* Featured project */
   .featured { padding: clamp(22px, 4vw, 40px); }
+  .featured + .featured { margin-top: 22px; }
   .featured-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
   .badge { font-family: var(--mono); font-size: 12px; color: var(--violet); border: 1px solid hsl(calc(var(--h) + 70) 90% 74% / .35); border-radius: 999px; padding: 3px 10px; }
   .featured .tagline { color: var(--muted); margin: 0 0 28px; max-width: 760px; }
@@ -157,6 +158,8 @@
 
   .split { display: grid; grid-template-columns: 1fr 1.05fr; gap: 40px; align-items: start; }
   @media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+  /* Let grid columns and the frame URL shrink below their content width, so cards fit narrow phones */
+  .split > *, .figure-stack > *, .matrix > *, .frame-bar span { min-width: 0; }
   .points { margin: 0 0 26px; padding: 0; list-style: none; }
   .points li { position: relative; padding-left: 22px; margin-bottom: 12px; color: #cfd6e2; }
   .points li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 2px; background: var(--grad); transform: rotate(45deg); }
@@ -301,7 +304,49 @@
     <div class="wrap">
       <p class="kicker reveal">01 · PROJECTS</p>
       <h2 class="reveal">Things I've built</h2>
-      <p class="section-intro reveal">Every number on this page comes from the code in the linked repository. Two of these run live, so you can try them yourself.</p>
+      <p class="section-intro reveal">Every number on this page comes from the code in the linked repository. Three of these run live, so you can try them yourself.</p>
+
+      <article class="panel featured tilt reveal" data-tilt="2.5">
+        <div class="featured-head">
+          <h3>FinReport Agent</h3>
+          <span class="badge">FEATURED · LIVE</span>
+        </div>
+        <p class="tagline">Answers questions about company annual reports with the pages it used. A LangGraph agent plans its searches, checks it found the right passages, does every calculation with a calculator tool and verifies its numbers against the report before answering.</p>
+
+        <div class="stats">
+          <div class="stat"><div class="value" data-count="70" data-decimals="0" data-suffix="%">70%</div><div class="label">numerical questions right with gpt-oss-120b (plain RAG: 50%)</div></div>
+          <div class="stat"><div class="value" data-count="66" data-decimals="0" data-suffix="%">66%</div><div class="label">same questions with a 4B model on my laptop GPU (plain RAG: 36%)</div></div>
+          <div class="stat"><div class="value" data-count="145" data-decimals="0">145</div><div class="label">held-out FinanceBench questions, both gains significant (p &lt; 0.01)</div></div>
+        </div>
+
+        <div class="split">
+          <div>
+            <ul class="points">
+              <li>Hybrid search (bge-small embeddings + BM25, rank fusion) over 84 public filings, with page citations and full-page context so tables are never cut in half.</li>
+              <li>LangGraph loop: plan, retrieve, grade, rewrite the search, reason with a calculator tool, then check every number against the source, or answer "I couldn't find this".</li>
+              <li>Compared with plain RAG using a judge model from a different family. My first 30-question run overstated the gain for the large model; on all 145 it helps on numerical questions but not on qualitative ones, and I documented why.</li>
+              <li>Built to survive free API tiers: saved runs, an answer cache, a four-model fallback chain and a per-visitor limit. Visitors can upload their own PDF.</li>
+            </ul>
+            <ul class="tags">
+              <li>LangGraph</li><li>LangChain</li><li>RAG</li><li>ChromaDB</li><li>Groq</li><li>Ollama</li><li>Streamlit</li><li>Pytest</li>
+            </ul>
+            <div class="actions">
+              <a class="btn primary" href="https://finreport-agent.streamlit.app/">Try the live demo</a>
+              <a class="btn" href="https://github.com/gilgamish-hub/finreport-agent">Code</a>
+              <a class="btn" href="https://github.com/gilgamish-hub/finreport-agent#results">Evaluation</a>
+            </div>
+          </div>
+          <div class="figure-stack">
+            <figure>
+              <div class="frame">
+                <div class="frame-bar"><i></i><i></i><i></i><span>finreport-agent.streamlit.app</span></div>
+                <img src="assets/finreport-app.webp" width="860" height="685" alt="The FinReport app answering how much 3M's capital expenditure changed from FY2017 to FY2018: the agent's search, grading and calculator steps, then the answer, $204 million or 14.86%, citing page 46." loading="lazy">
+              </div>
+              <figcaption>The live app working out a change in capital expenditure: the agent's steps, the calculator call and the cited page.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </article>
 
       <article class="panel featured tilt reveal" data-tilt="2.5">
         <div class="featured-head">
@@ -409,7 +454,7 @@
       <p class="section-intro reveal">Python first, with the ML and LLM tooling around it.</p>
       <div class="skills">
         <div class="panel skill tilt reveal"><h3>Machine learning</h3><ul class="tags"><li>PyTorch</li><li>TensorFlow</li><li>Keras</li><li>Scikit-learn</li><li>CNNs</li><li>GANs</li><li>VAEs</li><li>RL (DQN)</li></ul></div>
-        <div class="panel skill tilt reveal d1"><h3>Generative AI &amp; NLP</h3><ul class="tags"><li>Transformers</li><li>BERT</li><li>LegalBERT</li><li>DistilBERT</li><li>LangChain</li><li>LangGraph</li><li>RAG</li><li>ChromaDB</li><li>Gemini API</li><li>Ollama</li></ul></div>
+        <div class="panel skill tilt reveal d1"><h3>Generative AI &amp; NLP</h3><ul class="tags"><li>Transformers</li><li>BERT</li><li>LegalBERT</li><li>DistilBERT</li><li>LangChain</li><li>LangGraph</li><li>RAG</li><li>ChromaDB</li><li>Gemini API</li><li>Groq</li><li>Ollama</li><li>Hugging Face</li></ul></div>
         <div class="panel skill tilt reveal d2"><h3>Computer vision</h3><ul class="tags"><li>OpenCV</li><li>YOLOv8</li><li>U-Net</li><li>Segmentation</li></ul></div>
         <div class="panel skill tilt reveal"><h3>Languages</h3><ul class="tags"><li>Python</li><li>C++</li><li>Java</li><li>SQL</li></ul></div>
         <div class="panel skill tilt reveal d1"><h3>Backend &amp; data</h3><ul class="tags"><li>FastAPI</li><li>REST APIs</li><li>MySQL</li><li>MongoDB</li><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Tableau</li></ul></div>
