@@ -1158,6 +1158,12 @@
     if (!track) return;
     var carousel = track.closest(".carousel");
     var slides = Array.prototype.slice.call(track.querySelectorAll(".slide"));
+    // Number the slides from their order in the page, so adding one never means renumbering the rest
+    slides.forEach(function (slide, i) {
+      var num = slide.querySelector(".slide-num"), title = slide.querySelector("h3");
+      if (num) num.textContent = (i < 9 ? "0" : "") + (i + 1);
+      slide.setAttribute("aria-label", (i + 1) + " of " + slides.length + (title ? ": " + title.textContent : ""));
+    });
     var prevBtn = carousel.querySelector('.car-btn[data-dir="-1"]'), nextBtn = carousel.querySelector('.car-btn[data-dir="1"]');
     var active = -1;
 
