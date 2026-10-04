@@ -484,13 +484,14 @@
               <ul class="points">
                 <li>Hybrid search (bge-small + BM25) over 84 public filings, with full-page context so tables are never cut in half.</li>
                 <li>My first 30-question run overstated the gain for the large model. On all 145 it helps on numerical questions but not qualitative ones, so simple lookups are now routed to plain RAG.</li>
-                <li>Also runs as a streaming FastAPI service in Docker (metrics, API keys) and as an MCP server that Claude Desktop or other agents can use.</li>
+                <li>Also deployed as a streaming FastAPI service in Docker on Azure Container Apps (metrics, API keys), and as an MCP server that Claude Desktop or other agents can use.</li>
               </ul>
-              <ul class="tags"><li>LangGraph</li><li>LangChain</li><li>RAG</li><li>ChromaDB</li><li>FastAPI</li><li>Docker</li><li>MCP</li><li>Groq</li><li>Ollama</li></ul>
+              <ul class="tags"><li>LangGraph</li><li>LangChain</li><li>RAG</li><li>ChromaDB</li><li>FastAPI</li><li>Docker</li><li>Azure</li><li>MCP</li><li>Groq</li><li>Ollama</li></ul>
               <div class="actions">
                 <a class="btn primary" href="https://finreport-agent.streamlit.app/">Try the live demo</a>
                 <a class="btn" href="https://github.com/gilgamish-hub/finreport-agent">Code</a>
                 <a class="btn" href="https://github.com/gilgamish-hub/finreport-agent#results">Evaluation</a>
+                <a class="btn" href="https://finreport-api.wittytree-d81b0e1e.centralindia.azurecontainerapps.io/docs">API on Azure</a>
               </div>
             </div>
             <div class="slide-shot frame">
